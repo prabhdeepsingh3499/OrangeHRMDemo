@@ -13,24 +13,19 @@ public class Common {
 	public Common(WebDriver driver) {
 		this.driver = driver;
 	}
-	private By pageHeading(String pageheading) {
+	private By headerHeading(String pageheading) {
 		return By.xpath("//h6[text()='"+pageheading+"']");
+	}
+	private By mainTitleHeading(String pageheading) {
+		return By.xpath("//h6[text()='"+pageheading+"']");
+	}
+	private By tableHeading(String pageheading) {
+		return By.xpath("//h5[text()='"+pageheading+"']");
 	}
 	private By successMessage = By.xpath("//i[contains(@class,'check')]");
 	private By pageLoad = By.xpath("//div[contains(@class,'oxd-table-loader')]");
 	private By deleteButton = By.xpath("//button[contains(@class,'danger')]");
-	public boolean checkPageDisplayed(String heading) {
-		waitForPageLoadersInvisible();
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(45));
-		WebElement pageHeading = wait.until(ExpectedConditions.visibilityOfElementLocated(pageHeading(heading)));
-		if(pageHeading.isDisplayed()) {
-			return true;
-		}
-		else {
-			throw new RuntimeException("page is not displayed");
-		}
-		
-	}
+
 	public boolean checkSuccessMessage() {
 		// TODO Auto-generated method stub
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
@@ -66,6 +61,42 @@ public class Common {
 	}
 	public void clickDelete() {
 		driver.findElement(deleteButton).click();
+		
+	}
+	public boolean checkHeaderDisplayed(String heading) {
+		//waitForPageLoadersInvisible();
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(45));
+		WebElement pageHeading = wait.until(ExpectedConditions.visibilityOfElementLocated(headerHeading(heading)));
+		if(pageHeading.isDisplayed()) {
+			return true;
+		}
+		else {
+			throw new RuntimeException("page is not displayed");
+		}
+		
+	}
+	public boolean checkMainTitleDisplayed(String heading) {
+		//waitForPageLoadersInvisible();
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(45));
+		WebElement pageHeading = wait.until(ExpectedConditions.visibilityOfElementLocated(mainTitleHeading(heading)));
+		if(pageHeading.isDisplayed()) {
+			return true;
+		}
+		else {
+			throw new RuntimeException("page is not displayed");
+		}
+		
+	}
+	public boolean checkTableTitleDisplayed(String page) {
+		//waitForPageLoadersInvisible();
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(45));
+		WebElement tableHeading = wait.until(ExpectedConditions.visibilityOfElementLocated(tableHeading(page)));
+		if(tableHeading.isDisplayed()) {
+			return true;
+		}
+		else {
+			throw new RuntimeException("page is not displayed");
+		}
 		
 	}
 }
