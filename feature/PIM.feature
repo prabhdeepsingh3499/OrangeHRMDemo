@@ -7,15 +7,16 @@ Scenario: Add Employee to Database
 Given Login page is Displayed
 When User enters "<username>" and "<password>" 
 And Clicks on Login
-Then "Dashboard" Page is Displayed
+Then Validate Header Title of Page is "Dashboard"
 When User Select "PIM" from Main Menu
-Then "PIM" Page is Displayed
+Then Validate Header Title of Page is "PIM"
+And Validate Title of Table is "Employee Information"
 When User clicks on Add
-Then "Add Employee" Page is Displayed
+Then Validate Main Title of Page is "Add Employee"
 When User enter Employee Information
 And User Submit Employee Information
 Then Success Message is Displayed
-And "Personal Details" Page is Displayed
+And Validate Main Title of Page is "Personal Details"
 Examples:
 | username | password |
 | Admin    | admin123 |
@@ -25,14 +26,15 @@ Scenario: Delete Employee from Database
 Given Login page is Displayed
 When User enters "<username>" and "<password>" 
 And Clicks on Login
-Then "Dashboard" Page is Displayed
+Then Validate Header Title of Page is "Dashboard"
 When User Select "PIM" from Main Menu
-Then "PIM" Page is Displayed
+Then Validate Header Title of Page is "PIM"
+And Validate Title of Table is "Employee Information"
 When User clicks on Delete button
 Then Confirmation Popup is Displayed
 When User confirms Deletion
 Then Success Message is Displayed
-And "PIM" Page is Displayed
+And Validate Header Title of Page is "PIM"
 Examples:
 | username | password |
 | Admin    | admin123 |
