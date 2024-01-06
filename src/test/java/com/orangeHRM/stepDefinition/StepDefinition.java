@@ -18,6 +18,7 @@ import com.orangeHRM.pages.LoginPage;
 import com.orangeHRM.pages.EmployeeInformationPage;
 import com.orangeHRM.pages.Common;
 import com.orangeHRM.pages.AddEmployeePage;
+import com.orangeHRM.pages.LeaveListPage;
 public class StepDefinition extends BaseClass {
 	private BaseClass base;
 	private WebDriver driver;
@@ -30,6 +31,7 @@ public class StepDefinition extends BaseClass {
 	EmployeeInformationPage employeeInformationPage;
 	AddEmployeePage addEmployeePage;
 	Common common;
+	LeaveListPage leaveListPage;
 	public StepDefinition(BaseClass base) {
 		this.base =base;
 		this.driver = base.driver;
@@ -39,6 +41,7 @@ public class StepDefinition extends BaseClass {
 		employeeInformationPage = new EmployeeInformationPage(driver);
 		common = new Common(driver);
 		addEmployeePage = new AddEmployeePage(driver);
+		leaveListPage = new LeaveListPage(driver);
 	}
 	@Given("Login page is Displayed")
 	public void is_login_page_displayed() {
@@ -86,11 +89,31 @@ public class StepDefinition extends BaseClass {
 			throw new RuntimeException(e.getMessage());
 		}
 	}
-	@Then("{string} Page is Displayed")
-	public void check_page(String page) {
+	@Then("Validate Header Title of Page is {string}")
+	public void check_header_title_page(String page) {
 		try {
 				common.waitForPageLoadersInvisible();
-				common.checkPageDisplayed(page);
+				common.checkHeaderDisplayed(page);
+		}
+		catch(Exception e) {
+		 throw new RuntimeException(e.getMessage());
+		}
+	}
+	@Then("Validate Main Title of Page is {string}")
+	public void check_main_title_page(String page) {
+		try {
+				common.waitForPageLoadersInvisible();
+				common.checkMainTitleDisplayed(page);
+		}
+		catch(Exception e) {
+		 throw new RuntimeException(e.getMessage());
+		}
+	}
+	@And("Validate Title of Table is {string}")
+	public void check_table_title(String page) {
+		try {
+				common.waitForPageLoadersInvisible();
+				common.checkTableTitleDisplayed(page);
 		}
 		catch(Exception e) {
 		 throw new RuntimeException(e.getMessage());
@@ -159,5 +182,25 @@ public class StepDefinition extends BaseClass {
 			throw new RuntimeException(e.getMessage());
 		}
 	}
-	
+	@And("Validate Leave Applications are Displayed")
+	public void validate_leave_application() {
+		try {
+			int size = leaveListPage.getListOfApplications();
+			if(size==0) {
+				throw new RuntimeException("No leave applications");
+			}
+		}
+		catch(Exception e) {
+			throw new RuntimeException(e.getMessage());
+		}
+	}
+	@When("User clicks on Approve")
+	public void approve_leave_application() {
+		try {
+			leaveListPage.approveLeave();
+		}
+		catch(Exception e) {
+			throw new RuntimeException(e.getMessage());
+		}
+	}
 }
