@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<extentreports>
+	<configuration>
+		<theme>dark</theme>
+		<encoding>UTF-8</encoding>
+		<documentTitle>OrangeHRMAutomation</documentTitle>
+		<reportName>Automation Report</reportName>
+		<reportHeadline> - v1.0.0</reportHeadline>
+		<!-- defaults to yyyy-MM-dd -->
+		<dateFormat>dd-MM-yyyy</dateFormat>
+        <!-- custom javascript -->
+        <scripts>
+        <![CDATA[
+        $(document).ready(function() {
+        $(".logo-content").hide();
+        $(".logo-container").html("Automation Report");
+        $'#parentNodes').prop("checked", true).click();
+        $('#test-count-setting > div.modal-footer > a')[0].click();
+        });
+        ]]>
+        </scripts>
+       <!-- custom styles -->
+       <styles>
+       <![CDATA[
+       ]]>
+       </styles>
+	</configuration>
+</extentreports>

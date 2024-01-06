@@ -46,12 +46,5 @@ public class Hooks extends BaseClass {
 		}
 		base.driver.quit();
 	}
-	@AfterStep
-	public void afterStep(Scenario scenario) {
-		if(PropertyReader.getApplicationProperty("isScreenshotRequired").equalsIgnoreCase("true")) {
-			final byte[] screenshot = ((TakesScreenshot) base.driver).getScreenshotAs(OutputType.BYTES);
-			scenario.attach(screenshot, "image/png", "image");
-		}
-	}
 
 }
