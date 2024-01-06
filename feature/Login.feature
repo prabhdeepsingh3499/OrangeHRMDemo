@@ -7,7 +7,7 @@ Scenario: Login with Valid Credentials
 Given Login page is Displayed
 When User enters "<username>" and "<password>" 
 And Clicks on Login
-Then "Dashboard" Page is Displayed
+Then Validate Header Title of Page is "Dashboard"
 Examples:
 | username | password |
 | Admin    | admin123 |
