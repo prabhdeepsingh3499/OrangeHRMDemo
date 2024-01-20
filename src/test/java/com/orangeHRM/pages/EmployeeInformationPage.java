@@ -1,14 +1,18 @@
 package com.orangeHRM.pages;
 import java.util.List;
 
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+
+import com.orangeHRM.utility.LoggerHelper;
 import com.orangeHRM.utility.RandomData;
 
 public class EmployeeInformationPage {
 	private WebDriver driver;
+	private Logger logger = LoggerHelper.getLogger(this.getClass());
 	public EmployeeInformationPage(WebDriver driver) {
 		this.driver = driver;
 	}
@@ -20,7 +24,7 @@ public class EmployeeInformationPage {
 	RandomData random = new RandomData();
 	public void clickAdd() {
 		driver.findElement(addButton).click();
-		
+		logger.info("Add button clicked");
 	}
 	public void clickDelete() {
 		List<WebElement> deleteList = driver.findElements(deleteButton);
@@ -28,6 +32,7 @@ public class EmployeeInformationPage {
 		WebElement delete = driver.findElement(clickDelete(randomElement));
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", delete);
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", delete);
+		logger.info("Delete button clicked");
 		
 		
 	}
