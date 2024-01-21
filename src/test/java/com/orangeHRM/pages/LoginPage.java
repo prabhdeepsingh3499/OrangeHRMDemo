@@ -25,12 +25,12 @@ public class LoginPage {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40));
 		WebElement button = wait.until(ExpectedConditions.elementToBeClickable(submit));
 		if(button.isDisplayed()) {
-			logger.debug("Login page is displayed");
+			logger.info("Login page is displayed");
 			return true;
 		}
 		else {
 			logger.error("Login page is not displayed");
-			throw new RuntimeException("Login page is not displayed");
+			return false;
 		}
 		
 	}
@@ -52,11 +52,12 @@ public class LoginPage {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
 		WebElement message= wait.until(ExpectedConditions.visibilityOfElementLocated(error));
 		if(message.isDisplayed()) {
+			logger.info("Invalid Login error is displayed");
 			return true;
 		}
 		else {
 			logger.error("Invalid Login error is not displayed");
-			throw new RuntimeException("Invalid Login error is not displayed");
+			return false;
 		}
 		
 	}
