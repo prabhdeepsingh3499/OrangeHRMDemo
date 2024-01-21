@@ -27,14 +27,13 @@ public class Common {
 	private By deleteButton = By.xpath("//button[contains(@class,'danger')]");
 
 	public boolean checkSuccessMessage() {
-		// TODO Auto-generated method stub
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
 		WebElement message = wait.until(ExpectedConditions.visibilityOfElementLocated(successMessage));
 		if(message.isDisplayed()){
 			return true;
 		}
 		else {
-			throw new RuntimeException("Success message is not displayed");
+			return false;
 		}
 		
 	}
@@ -54,36 +53,39 @@ public class Common {
 		    }
 		
 	}
-	public void checkConfirmationPopup() {
+	public boolean checkConfirmationPopup() {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
-		wait.until(ExpectedConditions.elementToBeClickable(deleteButton));
-		
+		WebElement deleteBtn = wait.until(ExpectedConditions.elementToBeClickable(deleteButton));
+		if(deleteBtn.isDisplayed()) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 	public void clickDelete() {
 		driver.findElement(deleteButton).click();
 		
 	}
 	public boolean checkHeaderDisplayed(String heading) {
-		//waitForPageLoadersInvisible();
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(45));
 		WebElement pageHeading = wait.until(ExpectedConditions.visibilityOfElementLocated(headerHeading(heading)));
 		if(pageHeading.isDisplayed()) {
 			return true;
 		}
 		else {
-			throw new RuntimeException("page is not displayed");
+			return false;
 		}
 		
 	}
 	public boolean checkMainTitleDisplayed(String heading) {
-		//waitForPageLoadersInvisible();
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(45));
 		WebElement pageHeading = wait.until(ExpectedConditions.visibilityOfElementLocated(mainTitleHeading(heading)));
 		if(pageHeading.isDisplayed()) {
 			return true;
 		}
 		else {
-			throw new RuntimeException("page is not displayed");
+			return false;
 		}
 		
 	}
@@ -95,7 +97,7 @@ public class Common {
 			return true;
 		}
 		else {
-			throw new RuntimeException("page is not displayed");
+			return false;
 		}
 		
 	}

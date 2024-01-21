@@ -46,7 +46,12 @@ public class StepDefinition extends BaseClass {
 	@Given("Login page is Displayed")
 	public void is_login_page_displayed() {
 		try {
-			loginPage.isLoginPageDisplayed();
+			if(loginPage.isLoginPageDisplayed()) {
+				scenario.log("Login page is displayed");
+			}
+			else {
+				throw new RuntimeException("Login page is not displayed");
+			}
 		}
 		catch(Exception e) {
 			throw new RuntimeException(e.getMessage());
@@ -74,7 +79,12 @@ public class StepDefinition extends BaseClass {
 	@Then("Invalid Credentials Error is Displayed")
 	public void is_error_displayed() {
 		try {
-			loginPage.isErrorDisplayed();
+			if(loginPage.isErrorDisplayed()) {
+				scenario.log("Login page error is displayed");
+			}
+			else {
+				throw new RuntimeException("Login page error is not displayed");
+			}
 		}
 		catch(Exception e) {
 			throw new RuntimeException(e.getMessage());
@@ -93,7 +103,12 @@ public class StepDefinition extends BaseClass {
 	public void check_header_title_page(String page) {
 		try {
 				common.waitForPageLoadersInvisible();
-				common.checkHeaderDisplayed(page);
+				if(common.checkHeaderDisplayed(page)) {
+					scenario.log("Header title of page is:"+page);
+				}
+				else {
+					throw new RuntimeException("Header title of page is not:"+page);
+				}
 		}
 		catch(Exception e) {
 		 throw new RuntimeException(e.getMessage());
@@ -103,17 +118,27 @@ public class StepDefinition extends BaseClass {
 	public void check_main_title_page(String page) {
 		try {
 				common.waitForPageLoadersInvisible();
-				common.checkMainTitleDisplayed(page);
+				if(common.checkMainTitleDisplayed(page)) {
+					scenario.log("Main title of page is:"+page);
+				}
+				else {
+					throw new RuntimeException("Main title of page is not:"+page);
+				}
 		}
 		catch(Exception e) {
 		 throw new RuntimeException(e.getMessage());
 		}
 	}
-	@And("Validate Title of Table is {string}")
+	@Then("Validate Title of Table is {string}")
 	public void check_table_title(String page) {
 		try {
 				common.waitForPageLoadersInvisible();
-				common.checkTableTitleDisplayed(page);
+				if(common.checkTableTitleDisplayed(page)) {
+					scenario.log("Table title of page is:"+page);
+				}
+				else {
+					throw new RuntimeException("Table title of page is not:"+page);
+				}
 		}
 		catch(Exception e) {
 		 throw new RuntimeException(e.getMessage());
@@ -149,7 +174,12 @@ public class StepDefinition extends BaseClass {
 	@Then("Success Message is Displayed")
 	public void check_success_message() {
 		try {
-			common.checkSuccessMessage();
+			if(common.checkSuccessMessage()) {
+				scenario.log("Success message is displayed");
+			}
+			else {
+				throw new RuntimeException("Success message is not displayed");
+			}
 		}
 		catch(Exception e) {
 			throw new RuntimeException(e.getMessage());
@@ -167,7 +197,12 @@ public class StepDefinition extends BaseClass {
 	@Then("Confirmation Popup is Displayed")
 	public void check_confirmation_popup() {
 		try {
-			common.checkConfirmationPopup();
+			if(common.checkConfirmationPopup()) {
+				scenario.log("Confirmation popup is displayed");
+			}
+			else {
+				throw new RuntimeException("Confirmation popup is not displayed");
+			}
 		}
 		catch(Exception e) {
 			throw new RuntimeException(e.getMessage());
