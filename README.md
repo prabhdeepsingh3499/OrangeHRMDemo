@@ -1,5 +1,12 @@
 # OrangeHRMDemo
 
-Automation of OrangeHRM website functionalities like PIM(Personal information management), Login and Leave Approvals.
+## Overview
+OrangeHRMDEMO is a project aimed at automating various tasks like leave approvals, login, and PIM related to OrangeHRM, a human resource management system, using Java and Selenium WebDriver.
 
-Technical Stack Used-Selenium, Java, Cucumber, TestNG.
+### Prerequisites
+
+- Java 1.8 or higher
+- Maven
+- WebDriver (e.g., ChromeDriver, GeckoDriver)
+- Cucumber
+- TestNG
